@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("/payments")
 public class PaymentController {
     private final Payment payment = new Payment(1L, 99.99);
-    private final Map<Long, Payment> payments = fillPayments();
+    private final Map<Long, Payment> payments = fillPayments()
 
     @GetMapping
     public Map<Long, Payment> getPayments() {
