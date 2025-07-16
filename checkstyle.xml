@@ -42,7 +42,7 @@
         </module>
         <module name="FallThrough"/>
         <module name="MissingSwitchDefault"/>
-<!--        <module name="AvoidInlineConditionals"/>-->
+        <module name="AvoidInlineConditionals"/>
     </module>
 
 </module>
