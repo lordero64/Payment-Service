@@ -60,3 +60,5 @@ K
 checkstyle.xml,0\d\0d7fcbf2189c1d04b7686bca0ee60fdded230e2d
 i
 9simple-http-server/src/main/java/iprody/package-info.java,b\b\bb38fbb0945746230e706a5ed1f3610f8ea55c94
+g
+7payment-service-app/src/main/resources/application.yaml,f\d\fd418e50a855cf274f9987830db2fe495066a9aa
