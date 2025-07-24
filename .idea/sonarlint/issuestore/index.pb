@@ -44,8 +44,6 @@ H
 payment-service-app/mvnw,f\0\f0040786acbd1d23ef3f9d2910732fe245dea19c
 L
 payment-service-app/mvnw.cmd,9\a\9a9b8fea945f76a214cde573106c6db2bb4b8c81
-É
-Spayment-service-app/src/main/java/com/iprody/payment/service/app/model/Payment.java,6\6\6663e6b3ef1baaf486f91de22dee73c5ed92db00
 í
 bpayment-service-app/src/main/java/com/iprody/payment/service/app/PaymentServiceAppApplication.java,a\9\a9acc511587d942ef5bca60b1d78caa3bff1b29c
 ó
@@ -62,3 +60,11 @@ i
 9simple-http-server/src/main/java/iprody/package-info.java,b\b\bb38fbb0945746230e706a5ed1f3610f8ea55c94
 g
 7payment-service-app/src/main/resources/application.yaml,f\d\fd418e50a855cf274f9987830db2fe495066a9aa
+N
+payment-service-app/Dockerfile,4\4\445b6300e27426e5d5f5c3f6ce1a6a5e8980be8d
+á
+Wpayment-service-app/src/main/java/com/iprody/payment/service/app/model/PaymentTest.java,4\a\4a6c11438991af116f9bead737948ff08d9a8256
+V
+&payment-service-app/docker-compose.yml,6\a\6aed16bd2378c7c971a13be257c151d57f8773c8
+ê
+`payment-service-app/src/main/java/com/iprody/payment/service/app/persistence/entity/Payment.java,1\b\1b9f23f25965f7707817fb89381f618dcdcbe5b6
