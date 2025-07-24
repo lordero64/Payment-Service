@@ -26,8 +26,6 @@ Q.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140
 bpayment-service-app/src/main/java/com/iprody/payment/service/app/controller/PaymentController.java,2\9\298768b1501432aa44231a47c727fb3fc2c1a980
 N
 payment-service-app/.gitignore,c\7\c7f2e17074c2770d5c567cd6c8493a7e8bf3f026
-É
-Spayment-service-app/src/main/java/com/iprody/payment/service/app/model/Payment.java,6\6\6663e6b3ef1baaf486f91de22dee73c5ed92db00
 Å
 Q.idea/sonarlint/securityhotspotstore/2/4/247be31907f8cc117b6fc30a84305a063938c32c,3\3\3359b4a58b837b882aec54b296ff0253b69ad6dc
 w
@@ -62,3 +60,11 @@ i
 9simple-http-server/src/main/java/iprody/package-info.java,b\b\bb38fbb0945746230e706a5ed1f3610f8ea55c94
 g
 7payment-service-app/src/main/resources/application.yaml,f\d\fd418e50a855cf274f9987830db2fe495066a9aa
+N
+payment-service-app/Dockerfile,4\4\445b6300e27426e5d5f5c3f6ce1a6a5e8980be8d
+ê
+`payment-service-app/src/main/java/com/iprody/payment/service/app/persistence/entity/Payment.java,1\b\1b9f23f25965f7707817fb89381f618dcdcbe5b6
+á
+Wpayment-service-app/src/main/java/com/iprody/payment/service/app/model/PaymentTest.java,4\a\4a6c11438991af116f9bead737948ff08d9a8256
+V
+&payment-service-app/docker-compose.yml,6\a\6aed16bd2378c7c971a13be257c151d57f8773c8
