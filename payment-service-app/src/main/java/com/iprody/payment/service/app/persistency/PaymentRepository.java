@@ -1,4 +1,4 @@
-package com.iprody.payment.service.app.persistence;
+package com.iprody.payment.service.app.persistency;
 
 
 import com.iprody.payment.service.app.persistence.entity.Payment;

@@ -64,7 +64,9 @@ N
 payment-service-app/Dockerfile,4\4\445b6300e27426e5d5f5c3f6ce1a6a5e8980be8d
 ê
 `payment-service-app/src/main/java/com/iprody/payment/service/app/persistence/entity/Payment.java,1\b\1b9f23f25965f7707817fb89381f618dcdcbe5b6
-á
-Wpayment-service-app/src/main/java/com/iprody/payment/service/app/model/PaymentTest.java,4\a\4a6c11438991af116f9bead737948ff08d9a8256
 V
 &payment-service-app/docker-compose.yml,6\a\6aed16bd2378c7c971a13be257c151d57f8773c8
+ì
+cpayment-service-app/src/main/java/com/iprody/payment/service/app/persistency/PaymentRepository.java,6\6\66e1ef57207b950a7a0a013d842dd0fc48606de2
+ñ
+fpayment-service-app/src/main/java/com/iprody/payment/service/app/persistence/entity/PaymentStatus.java,6\5\65449a66440fdd531abf401f523492afac74ad0e
