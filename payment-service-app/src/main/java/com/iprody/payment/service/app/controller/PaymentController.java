@@ -1,6 +1,6 @@
 package com.iprody.payment.service.app.controller;
 
-import com.iprody.payment.service.app.persistency.PaymentRepository;
+import com.iprody.payment.service.app.persistence.entity.PaymentRepository;
 import com.iprody.payment.service.app.persistence.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
