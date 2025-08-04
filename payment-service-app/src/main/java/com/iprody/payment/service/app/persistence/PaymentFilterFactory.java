@@ -10,7 +10,7 @@ public final class PaymentFilterFactory {
     public static Specification<Payment> fromFilter(PaymentFilter paymentFilter) {
         Specification<Payment> spec = EMPTY;
 
-        if(paymentFilter.getStatus() != null){
+        if (paymentFilter.getStatus() != null) {
             spec = spec.and(PaymentSpecifications.hasStatus(paymentFilter.getStatus()));
         }
 
@@ -28,11 +28,11 @@ public final class PaymentFilterFactory {
                     paymentFilter.getCreatedAfter(), paymentFilter.getCreatedBefore()));
         }
 
-        if(paymentFilter.getCreatedAfter() != null){
+        if (paymentFilter.getCreatedAfter() != null) {
             spec = spec.and((PaymentSpecifications.createdAtAfter(paymentFilter.getCreatedAfter())));
         }
 
-        if(paymentFilter.getCreatedBefore() != null){
+        if (paymentFilter.getCreatedBefore() != null) {
             spec = spec.and((PaymentSpecifications.createdAtBefore(paymentFilter.getCreatedBefore())));
         }
 

@@ -24,15 +24,15 @@ public class PaymentController {
 
     @GetMapping("/all")
     public Page<Payment> getAll(@ModelAttribute PaymentFilter paymentFilter,
-                                @RequestParam(defaultValue = "0") int page,
-                                @RequestParam(defaultValue = "5") int size,
-                                @RequestParam(defaultValue = "guid") String sortBy,
-                                @RequestParam(defaultValue = "desc") String direction) {
-        Sort sort = direction.equalsIgnoreCase("desc")
-                ? Sort.by(sortBy).descending()
-                : Sort.by(sortBy).ascending();
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "guid") String sortBy,
+        @RequestParam(defaultValue = "desc") String direction) {
+        final Sort sort = direction.equalsIgnoreCase("desc")
+            ? Sort.by(sortBy).descending()
+            : Sort.by(sortBy).ascending();
 
-        Pageable pageable = PageRequest.of(page, size, sort);
+        final Pageable pageable = PageRequest.of(page, size, sort);
         return paymentRepository.findAll(PaymentFilterFactory.fromFilter(paymentFilter), pageable);
     }
 
@@ -42,7 +42,7 @@ public class PaymentController {
     }
 
     @GetMapping("/by_status/{status}")
-    public List<Payment> getByStatus(@PathVariable PaymentStatus paymentStatus){
+    public List<Payment> getByStatus(@PathVariable PaymentStatus paymentStatus) {
 //        return paymentRepository.findAll(PaymentSpecifications.hasStatus(paymentStatus));
         return paymentRepository.findByStatus(paymentStatus);
     }
