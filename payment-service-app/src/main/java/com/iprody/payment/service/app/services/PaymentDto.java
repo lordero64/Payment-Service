@@ -1,47 +1,21 @@
-package com.iprody.payment.service.app.persistence.entity;
+package com.iprody.payment.service.app.services;
 
-import jakarta.persistence.*;
+import com.iprody.payment.service.app.persistence.entity.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "payments")
-public class Payment {
-
-    @Id
-    @Column(nullable = false, unique = true)
+public class PaymentDto {
     private UUID guid;
-
-    @Column(nullable = false, name = "inquiry_ref_id")
     private UUID inquiryRefId;
-
-    @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal amount;
-
-    @Column(nullable = false, length = 3)
     private String currency;
-
-    @Column(name = "transaction_ref_id")
     private UUID transactionRefId;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private PaymentStatus status;
-
-    @Column(columnDefinition = "text")
     private String note;
-
-    @Column(name = "created_at", nullable = false)
     private Instant createdAt;
-
-    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
-
-    public Payment() {
-    }
 
     public UUID getGuid() {
         return guid;
@@ -92,7 +66,6 @@ public class Payment {
     }
 
     public String getNote() {
-
         return note;
     }
 
