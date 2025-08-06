@@ -4,7 +4,6 @@ import com.iprody.payment.service.app.persistence.entity.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public class PaymentDto {
@@ -22,7 +21,8 @@ public class PaymentDto {
     public PaymentDto() {
     }
 
-    public PaymentDto(UUID guid, BigDecimal amount, String currency, UUID transactionRefId, PaymentStatus status, Instant createdAt, Instant updatedAt) {
+    public PaymentDto(UUID guid, BigDecimal amount, String currency, UUID transactionRefId, PaymentStatus status,
+        Instant createdAt, Instant updatedAt) {
         this.guid = guid;
         this.amount = amount;
         this.currency = currency;
