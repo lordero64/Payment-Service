@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class PaymentDto {
+
     private UUID guid;
     private UUID inquiryRefId;
     private BigDecimal amount;
@@ -16,6 +17,21 @@ public class PaymentDto {
     private String note;
     private Instant createdAt;
     private Instant updatedAt;
+
+    public PaymentDto() {
+    }
+
+    public PaymentDto(UUID guid, BigDecimal amount, String currency, UUID transactionRefId, PaymentStatus status,
+        Instant createdAt, Instant updatedAt) {
+        this.guid = guid;
+        this.amount = amount;
+        this.currency = currency;
+        this.transactionRefId = transactionRefId;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
 
     public UUID getGuid() {
         return guid;
@@ -88,4 +104,6 @@ public class PaymentDto {
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
 }
