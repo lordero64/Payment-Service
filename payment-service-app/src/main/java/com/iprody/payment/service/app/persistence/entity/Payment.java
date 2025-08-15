@@ -12,6 +12,7 @@ public class Payment {
 
     @Id
     @Column(nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID guid;
 
     @Column(nullable = false, name = "inquiry_ref_id")
