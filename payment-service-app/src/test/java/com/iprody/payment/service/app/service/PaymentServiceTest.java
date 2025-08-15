@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.repository.query.Param;
 
 
 import java.math.BigDecimal;
@@ -84,7 +85,7 @@ public class PaymentServiceTest {
         when(paymentMapper.toDto(payment)).thenReturn(paymentDto);
 
         //when
-        PaymentDto result = paymentService.findById(guid);
+        PaymentDto result = paymentService.get(guid);
 
         //then
         assertEquals(guid, result.getGuid());
@@ -93,6 +94,28 @@ public class PaymentServiceTest {
         assertEquals(amount, result.getAmount());
         assertEquals(now, result.getCreatedAt());
         assertEquals(now, result.getUpdatedAt());
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("statusProvider")
+    void shouldUpdatePaymentStatusById(PaymentStatus status) {
+        //given
+
+        when(paymentRepository.findById(guid)).thenReturn(Optional.of(payment));
+
+        //when
+        paymentService.updateStatus(guid, status);
+    }
+
+    @Test
+    void shouldUpdatePaymentNoteById() {
+        //given
+        String note = "new";
+
+        when(paymentRepository.findById(guid)).thenReturn(Optional.of(payment));
+        //when
+        paymentService.updateNote(guid, note);
     }
 
     @ParameterizedTest
@@ -118,7 +141,7 @@ public class PaymentServiceTest {
         when(paymentMapper.toDto(payment)).thenReturn(paymentDto);
 
         //when
-        Page<PaymentDto> result = paymentService.findAll(paymentFilter, pageable);
+        Page<PaymentDto> result = paymentService.search(paymentFilter, pageable);
 
         //then
         assertEquals(1, result.getTotalElements());
@@ -137,7 +160,7 @@ public class PaymentServiceTest {
         when(paymentMapper.toDto(payment)).thenReturn(paymentDto);
 
         //when
-        PaymentDto result = paymentService.findById(guid);
+        PaymentDto result = paymentService.get(guid);
 
         //then
         assertEquals(status, result.getStatus());
