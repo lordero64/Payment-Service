@@ -106,6 +106,10 @@ public class PaymentServiceTest {
 
         //when
         paymentService.updateStatus(guid, status);
+
+        //then
+        verify(paymentRepository).updateStatus(guid,status);
+
     }
 
     @Test
@@ -114,8 +118,12 @@ public class PaymentServiceTest {
         String note = "new";
 
         when(paymentRepository.findById(guid)).thenReturn(Optional.of(payment));
+
         //when
         paymentService.updateNote(guid, note);
+
+        //then
+        verify(paymentRepository).updateNote(guid, note);
     }
 
     @ParameterizedTest
