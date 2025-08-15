@@ -86,3 +86,7 @@ Jpayment-service-app/src/test/java/com/iprody/payment/service/app/Util.java,e\a
 ^payment-service-app/src/test/java/com/iprody/payment/service/app/mapper/PaymentMapperTest.java,b\8\b86d839cfed70e9c64710ed034b9b0b628501bda
 ê
 `payment-service-app/src/test/java/com/iprody/payment/service/app/service/PaymentServiceTest.java,b\8\b8b0b3273eecdbcfe38a2037081dc7d78096f542
+å
+\payment-service-app/src/main/java/com/iprody/payment/service/app/services/NoteUpdateDto.java,3\a\3a174481ac632ae3ec8f7657ae1bde44e5ade5ad
+ï
+epayment-service-app/src/main/java/com/iprody/payment/service/app/services/PaymentStatusUpdateDto.java,4\4\44bb222164d3dc0b614146f7fd38586834ad6587
