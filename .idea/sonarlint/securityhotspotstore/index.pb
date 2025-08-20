@@ -90,3 +90,9 @@ Jpayment-service-app/src/test/java/com/iprody/payment/service/app/Util.java,e\a
 epayment-service-app/src/main/java/com/iprody/payment/service/app/services/PaymentStatusUpdateDto.java,4\4\44bb222164d3dc0b614146f7fd38586834ad6587
 Œ
 \payment-service-app/src/main/java/com/iprody/payment/service/app/services/NoteUpdateDto.java,3\a\3a174481ac632ae3ec8f7657ae1bde44e5ade5ad
+‘
+apayment-service-app/src/main/java/com/iprody/payment/service/app/exception/NotFoundException.java,1\9\1957a7f05f0a5bf9d94f4abffeef1b3c3730fef4
+–
+fpayment-service-app/src/main/java/com/iprody/payment/service/app/exception/GlobalExceptionHandler.java,f\0\f046fb91dd1284540a52ebefabb17fdfd2350f73
+ˆ
+Xpayment-service-app/src/main/java/com/iprody/payment/service/app/exception/ErrorDto.java,5\1\51e5eb4508aecb6de831057b5c1e11ec1977f4b6
