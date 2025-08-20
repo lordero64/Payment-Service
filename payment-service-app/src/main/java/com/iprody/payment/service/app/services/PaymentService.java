@@ -1,5 +1,6 @@
 package com.iprody.payment.service.app.services;
 
+import com.iprody.payment.service.app.exception.NotFoundException;
 import com.iprody.payment.service.app.mapper.PaymentMapper;
 import com.iprody.payment.service.app.persistence.PaymentFilter;
 import com.iprody.payment.service.app.persistence.PaymentFilterFactory;
@@ -42,7 +43,7 @@ public class PaymentService {
 
     public PaymentDto get(UUID id) {
         return paymentRepository.findById(id)
-                .map(paymentMapper::toDto).orElseThrow(() -> new EntityNotFoundException("Платеж не найден: " + id));
+                .map(paymentMapper::toDto).orElseThrow(() -> new NotFoundException(Payment.class, id));
     }
 
     public PaymentDto update(UUID id, PaymentDto dto) {
