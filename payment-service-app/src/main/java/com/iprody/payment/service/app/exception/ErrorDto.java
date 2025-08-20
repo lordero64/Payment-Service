@@ -4,15 +4,15 @@ import java.time.Instant;
 
 public class ErrorDto {
 
-        private final String message;
-        private final Instant timestamp;
-        private final int errorCode;
+    private final String message;
+    private final Instant timestamp;
+    private final int errorCode;
 
-        public ErrorDto( int errorCode, String message) {
-            this.message = message;
-            this.timestamp = Instant.now();
-            this.errorCode = errorCode;
-        }
+    public ErrorDto (int errorCode, String message) {
+        this.message = message;
+        this.timestamp = Instant.now();
+        this.errorCode = errorCode;
+    }
 
     public String getMessage() {
         return message;
