@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -27,6 +28,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @GetMapping()
+    @PreAuthorize("hasAnyRole('admin', 'reader')")
     public Page<PaymentDto> search(@ModelAttribute PaymentFilter paymentFilter,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "5") int size,
@@ -42,16 +44,19 @@ public class PaymentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('admin')")
     public PaymentDto create(@RequestBody PaymentDto dto) {
         return paymentService.create(dto);
     }
 
     @GetMapping("/{guid}")
+    @PreAuthorize("hasAnyRole('admin', 'reader')")
     public PaymentDto get(@PathVariable UUID guid) {
         return  paymentService.get(guid);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('admin')")
     public PaymentDto update(@PathVariable UUID id, @RequestBody PaymentDto dto) {
         return paymentService.update(id, dto);
     }
@@ -72,6 +77,7 @@ public class PaymentController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('admin')")
     public void delete(@PathVariable UUID id) {
         paymentService.delete(id);
     }
