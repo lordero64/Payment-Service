@@ -28,7 +28,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @GetMapping()
-    @PreAuthorize("hasAnyRole('admin', 'reader')")
+    @PreAuthorize("hasAnyRole('admin', 'reader', 'user')")
     public Page<PaymentDto> search(@ModelAttribute PaymentFilter paymentFilter,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "5") int size,
@@ -50,7 +50,7 @@ public class PaymentController {
     }
 
     @GetMapping("/{guid}")
-    @PreAuthorize("hasAnyRole('admin', 'reader')")
+    @PreAuthorize("hasAnyRole('admin', 'reader', 'user')")
     public PaymentDto get(@PathVariable UUID guid) {
         return  paymentService.get(guid);
     }
