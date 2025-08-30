@@ -24,7 +24,6 @@ public class SecurityConfig {
 
                 // настраиваем security-фильтры
             .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/payments/**").hasRole("user")
             .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2
             .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtConverter)));
