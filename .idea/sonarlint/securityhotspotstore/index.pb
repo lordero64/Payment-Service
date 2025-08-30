@@ -106,3 +106,9 @@ ipayment-service-app/src/main/java/com/iprody/payment/service/app/security/Keycl
 ]payment-service-app/src/main/java/com/iprody/payment/service/app/security/SecurityConfig.java,8\2\82f4ec471b0147db1498faa23889afec85d87dbc
 U
 %payment-service-app/realm-export.json,e\a\eaf378fc08254233c7283eaac7dc47ac37b7baa4
+„
+Tpayment-service-app/src/test/java/com/iprody/payment/service/app/TestJwtFactory.java,1\2\1207c85e0761d9b5d2747288031d3be13e91a67f
+•
+epayment-service-app/src/test/java/com/iprody/payment/service/app/AbstractPostgresIntegrationTest.java,c\6\c6576c74738435eb7ca2e393b7c4f4fec89bff63
+¡
+qpayment-service-app/src/test/java/com/iprody/payment/service/app/controller/PaymentControllerIntegrationTest.java,7\4\7448dab728d4a175300f0a149120dafb279790f5
