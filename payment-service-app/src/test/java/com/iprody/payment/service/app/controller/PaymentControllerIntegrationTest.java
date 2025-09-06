@@ -20,8 +20,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
@@ -111,6 +110,30 @@ public class PaymentControllerIntegrationTest extends AbstractPostgresIntegratio
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Платёж не найден: " + nonexistentId))
+                .andExpect(jsonPath("$.timestamp").exists())
+                .andExpect(jsonPath("$.errorCode").value("404"));
+    }
+
+    @Test
+    void shouldDeletePaymentById() throws Exception {
+        UUID existingId = UUID.fromString("00000000-0000-0000-0000-000000000002");
+
+        mockMvc.perform(delete("/payments/" + existingId)
+                        .with(
+                                TestJwtFactory.jwtWithRole("test-user", "admin")
+                        )
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+
+
+        mockMvc.perform(get("/payments/" + existingId)
+                        .with(
+                                TestJwtFactory.jwtWithRole("test-user", "user")
+                        )
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message").value("Платёж не найден: " + existingId))
                 .andExpect(jsonPath("$.timestamp").exists())
                 .andExpect(jsonPath("$.errorCode").value("404"));
     }
