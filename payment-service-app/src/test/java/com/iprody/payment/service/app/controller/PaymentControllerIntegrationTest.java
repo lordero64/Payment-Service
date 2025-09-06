@@ -120,9 +120,10 @@ public class PaymentControllerIntegrationTest extends AbstractPostgresIntegratio
 
         mockMvc.perform(delete("/payments/" + existingId)
                         .with(
-                                TestJwtFactory.jwtWithRole("test-user", "user")
+                                TestJwtFactory.jwtWithRole("test-user", "admin")
                         )
-                        .accept(MediaType.APPLICATION_JSON));
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
 
 
         mockMvc.perform(get("/payments/" + existingId)
@@ -134,6 +135,6 @@ public class PaymentControllerIntegrationTest extends AbstractPostgresIntegratio
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Платёж не найден: " + existingId))
                 .andExpect(jsonPath("$.timestamp").exists())
-                .andExpect(jsonPath("$.errorCode").value("200"));
+                .andExpect(jsonPath("$.errorCode").value("404"));
     }
 }
