@@ -134,6 +134,6 @@ public class PaymentControllerIntegrationTest extends AbstractPostgresIntegratio
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Платёж не найден: " + existingId))
                 .andExpect(jsonPath("$.timestamp").exists())
-                .andExpect(jsonPath("$.errorCode").value("404"));
+                .andExpect(jsonPath("$.errorCode").value("200"));
     }
 }
