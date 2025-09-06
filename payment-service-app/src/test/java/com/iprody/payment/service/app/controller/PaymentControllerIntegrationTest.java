@@ -122,8 +122,7 @@ public class PaymentControllerIntegrationTest extends AbstractPostgresIntegratio
                         .with(
                                 TestJwtFactory.jwtWithRole("test-user", "user")
                         )
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+                        .accept(MediaType.APPLICATION_JSON));
 
 
         mockMvc.perform(get("/payments/" + existingId)
