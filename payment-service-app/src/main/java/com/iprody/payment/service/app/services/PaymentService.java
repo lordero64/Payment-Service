@@ -16,7 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -40,6 +39,10 @@ public class PaymentService {
 
     public PaymentDto create(PaymentDto dto) {
         final Payment entity = paymentMapper.toEntity(dto);
+//        entity.setGuid(UUID.randomUUID());
+//        entity.setCreatedAt(Instant.now());
+//        entity.setUpdatedAt(Instant.now());
+
         final Payment saved = paymentRepository.save(entity);
         final PaymentDto resultDto = paymentMapper.toDto(saved);
         // Добавляем отправку сообщения
