@@ -134,3 +134,7 @@ apayment-service-app/src/main/java/com/iprody/payment/service/app/async/XPayment
 {payment-service-app/src/main/java/com/iprody/payment/service/app/async/kafka/KafkaXPaymentAdapterResultListenerAdapter.java,e\3\e3d97693edc0170986ff7c5528434fd1f5b6ee99
 £
 spayment-service-app/src/main/java/com/iprody/payment/service/app/async/kafka/KafkaXPaymentAdapterRequestSender.java,c\8\c8230770ba8c126c16e92940cafdbee54e814f44
+<
+logs/app.log,1\9\19551365d5d85d08cf06f31af46de9860d5f5240
+S
+#payment-service-app/post-request.sh,4\d\4dacbd74ec3dce640d390d8eb98980b7176fd4f3
