@@ -17,14 +17,11 @@
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 
             <!-- Архив с указанием даты -->
-
             <fileNamePattern>logs/app-%d{yyyy-MM-dd}.log</fileNamePattern>
 
             <!-- Сколько файлов хранить -->
             <maxHistory>7</maxHistory>
-            <!-- Максимальный размер хранилища всех логов
-
-            (необязательно) -->
+            <!-- Максимальный размер хранилища всех логов (необязательно) -->
 
             <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
