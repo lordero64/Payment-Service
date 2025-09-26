@@ -24,7 +24,7 @@ public class SecurityConfig {
 
                 // настраиваем security-фильтры
             .authorizeHttpRequests(auth -> auth
-            .anyRequest().authenticated())
+            .anyRequest().anonymous())
             .oauth2ResourceServer(oauth2 -> oauth2
             .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtConverter)));
 
