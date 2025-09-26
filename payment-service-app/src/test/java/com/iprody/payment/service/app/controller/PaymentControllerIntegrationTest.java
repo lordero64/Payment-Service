@@ -1,7 +1,6 @@
 package com.iprody.payment.service.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iprody.payment.service.app.TestJwtFactory;
 import com.iprody.payment.service.app.AbstractIntegrationTest;
 import com.iprody.payment.service.app.persistence.PaymentRepository;
 import com.iprody.payment.service.app.persistence.entity.Payment;
@@ -37,9 +36,9 @@ public class PaymentControllerIntegrationTest extends AbstractIntegrationTest {
     @Test
     void shouldReturnOnlyLiquibasePayments() throws Exception {
         mockMvc.perform(get("/payments")
-                        .with(
-                                TestJwtFactory.jwtWithRole("test-user", "admin")
-                        )
+//                        .with(
+//                                TestJwtFactory.jwtWithRole("test-user", "admin")
+//                        )
                         .param("page", "0")
                         .param("size", "10")
                         .accept(MediaType.APPLICATION_JSON))
@@ -62,9 +61,9 @@ public class PaymentControllerIntegrationTest extends AbstractIntegrationTest {
         String json = objectMapper.writeValueAsString(dto);
 
         String response = mockMvc.perform(post("/payments")
-                        .with(
-                                TestJwtFactory.jwtWithRole("test-user","admin")
-                        )
+//                        .with(
+//                                TestJwtFactory.jwtWithRole("test-user","admin")
+//                        )
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isCreated())
@@ -88,9 +87,9 @@ public class PaymentControllerIntegrationTest extends AbstractIntegrationTest {
         UUID existingId = UUID.fromString("00000000-0000-0000-0000-000000000002");
 
         mockMvc.perform(get("/payments/" + existingId)
-                        .with(
-                                TestJwtFactory.jwtWithRole("test-user", "user")
-                        )
+//                        .with(
+//                                TestJwtFactory.jwtWithRole("test-user", "user")
+//                        )
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.guid").value(existingId.toString()))
@@ -103,9 +102,9 @@ public class PaymentControllerIntegrationTest extends AbstractIntegrationTest {
         UUID nonexistentId = UUID.randomUUID();
 
         mockMvc.perform(get("/payments/" + nonexistentId)
-                        .with(
-                                TestJwtFactory.jwtWithRole("test-user", "user")
-                        )
+//                        .with(
+//                                TestJwtFactory.jwtWithRole("test-user", "user")
+//                        )
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -119,17 +118,17 @@ public class PaymentControllerIntegrationTest extends AbstractIntegrationTest {
         UUID existingId = UUID.fromString("00000000-0000-0000-0000-000000000002");
 
         mockMvc.perform(delete("/payments/" + existingId)
-                        .with(
-                                TestJwtFactory.jwtWithRole("test-user", "admin")
-                        )
+//                        .with(
+//                                TestJwtFactory.jwtWithRole("test-user", "admin")
+//                        )
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
 
 
         mockMvc.perform(get("/payments/" + existingId)
-                        .with(
-                                TestJwtFactory.jwtWithRole("test-user", "user")
-                        )
+//                        .with(
+//                                TestJwtFactory.jwtWithRole("test-user", "user")
+//                        )
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
