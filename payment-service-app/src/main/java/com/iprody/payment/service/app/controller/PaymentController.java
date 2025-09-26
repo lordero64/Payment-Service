@@ -32,7 +32,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @GetMapping()
-    @PreAuthorize("hasAnyRole('admin', 'reader', 'user')")
+//    @PreAuthorize("hasAnyRole('admin', 'reader', 'user')")
     public Page<PaymentDto> search(@ModelAttribute PaymentFilter paymentFilter,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "5") int size,
@@ -52,7 +52,7 @@ public class PaymentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('admin')")
+//    @PreAuthorize("hasRole('admin')")
     public PaymentDto create(@RequestBody PaymentDto dto) {
         log.info("POST payment: {}", dto.getGuid());
         final PaymentDto newDto = paymentService.create(dto);
@@ -61,7 +61,7 @@ public class PaymentController {
     }
 
     @GetMapping("/{guid}")
-    @PreAuthorize("hasAnyRole('admin', 'reader', 'user')")
+//    @PreAuthorize("hasAnyRole('admin', 'reader', 'user')")
     public PaymentDto get(@PathVariable UUID guid) {
         log.info("GET payment by id: {}", guid);
         final PaymentDto dto = paymentService.get(guid);
@@ -70,7 +70,7 @@ public class PaymentController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin')")
+//    @PreAuthorize("hasAnyRole('admin')")
     public PaymentDto update(@PathVariable UUID id, @RequestBody PaymentDto dto) {
         log.info("PUT payment by id: {}", id);
         log.debug("update payment: {}", dto);
@@ -97,7 +97,7 @@ public class PaymentController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasRole('admin')")
+//    @PreAuthorize("hasRole('admin')")
     public void delete(@PathVariable UUID id) {
         log.info("DELETE payment by id: {}", id);
         paymentService.delete(id);
