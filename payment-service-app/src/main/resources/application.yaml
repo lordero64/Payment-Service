@@ -50,9 +50,9 @@ spring:
 app:
   kafka:
     topics:
-      xpayment-adapter:
-        request: xpayment-adapter.requests
-        response: xpayment-adapter.responses
+      x-payment-adapter:
+        request: x-payment-adapter.requests
+        response: x-payment-adapter.responses
 
 management:
   endpoints:
@@ -62,7 +62,8 @@ management:
 
 logging:
   level:
-    com.iprody.payment: ERROR
-    org.springframework.web: ERROR
-    org.springframework.data: ERROR
-    org.springframework.security: ERROR
+    com.iprody.payment: info
+    org.springframework.web: error
+    org.springframework.data: error
+    org.springframework.security: error
+    root: info
