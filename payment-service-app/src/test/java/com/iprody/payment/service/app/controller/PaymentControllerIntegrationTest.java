@@ -2,7 +2,7 @@ package com.iprody.payment.service.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iprody.payment.service.app.TestJwtFactory;
-import com.iprody.payment.service.app.AbstractPostgresIntegrationTest;
+import com.iprody.payment.service.app.AbstractIntegrationTest;
 import com.iprody.payment.service.app.persistence.PaymentRepository;
 import com.iprody.payment.service.app.persistence.entity.Payment;
 import com.iprody.payment.service.app.persistence.entity.PaymentStatus;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
-public class PaymentControllerIntegrationTest extends AbstractPostgresIntegrationTest {
+public class PaymentControllerIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
