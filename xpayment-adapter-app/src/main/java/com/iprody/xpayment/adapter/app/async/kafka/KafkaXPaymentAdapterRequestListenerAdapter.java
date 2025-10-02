@@ -15,8 +15,7 @@ public class KafkaXPaymentAdapterRequestListenerAdapter implements AsyncListener
     private static final Logger log = LoggerFactory.getLogger(KafkaXPaymentAdapterRequestListenerAdapter.class);
 
     private final MessageHandler<XPaymentAdapterRequestMessage> handler;
-    public
-    KafkaXPaymentAdapterRequestListenerAdapter(MessageHandler<XPaymentAdapterRequestMessage> handler) {
+    public KafkaXPaymentAdapterRequestListenerAdapter(MessageHandler<XPaymentAdapterRequestMessage> handler) {
         this.handler = handler;
     }
 
