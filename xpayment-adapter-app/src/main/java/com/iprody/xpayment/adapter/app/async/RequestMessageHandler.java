@@ -8,26 +8,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
-
 import java.time.Instant;
+
 @Component
-public class RequestMessageHandler implements
-        MessageHandler<XPaymentAdapterRequestMessage> {
-    private static final Logger logger =
-            LoggerFactory.getLogger(RequestMessageHandler.class);
+public class RequestMessageHandler implements MessageHandler<XPaymentAdapterRequestMessage> {
+    private static final Logger logger = LoggerFactory.getLogger(RequestMessageHandler.class);
     private final XPaymentProviderGateway xPaymentProviderGateway;
 
-    private final AsyncSender<XPaymentAdapterResponseMessage>
-            asyncSender;
+    private final AsyncSender<XPaymentAdapterResponseMessage> asyncSender;
     @Autowired
-    public RequestMessageHandler(
-            XPaymentProviderGateway xPaymentProviderGateway,
-            AsyncSender<XPaymentAdapterResponseMessage> asyncSender) {
+    public RequestMessageHandler(XPaymentProviderGateway xPaymentProviderGateway, AsyncSender<XPaymentAdapterResponseMessage> asyncSender) {
         this.xPaymentProviderGateway = xPaymentProviderGateway;
         this.asyncSender = asyncSender;
     }
     @Override
     public void handle(XPaymentAdapterRequestMessage message) {
+
         logger.info("Payment request received paymentGuid - {}, amount - {}, currency - {}", message.getPaymentGuid(), message.getAmount(), message.getCurrency());
 
         CreateChargeRequest createChargeRequest = new CreateChargeRequest();
