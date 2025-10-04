@@ -1,39 +1,65 @@
 package com.iprody.xpayment.adapter.app.async;
 
-import jakarta.annotation.PreDestroy;
+import com.iprody.xpayment.adapter.app.api.model.ChargeResponse;
+import com.iprody.xpayment.adapter.app.api.model.CreateChargeRequest;
+import com.iprody.xpayment.adapter.app.api.XPaymentProviderGateway;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 
 import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 @Component
-public class RequestMessageHandler implements MessageHandler<XPaymentAdapterRequestMessage> {
-    private final AsyncSender<XPaymentAdapterResponseMessage> sender;
-    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+public class RequestMessageHandler implements
+        MessageHandler<XPaymentAdapterRequestMessage> {
+    private static final Logger logger =
+            LoggerFactory.getLogger(RequestMessageHandler.class);
+    private final XPaymentProviderGateway xPaymentProviderGateway;
+
+    private final AsyncSender<XPaymentAdapterResponseMessage>
+            asyncSender;
     @Autowired
-    public
-    RequestMessageHandler(AsyncSender<XPaymentAdapterResponseMessage> sender) {
-        this.sender = sender;
+    public RequestMessageHandler(
+            XPaymentProviderGateway xPaymentProviderGateway,
+            AsyncSender<XPaymentAdapterResponseMessage> asyncSender) {
+        this.xPaymentProviderGateway = xPaymentProviderGateway;
+        this.asyncSender = asyncSender;
     }
     @Override
     public void handle(XPaymentAdapterRequestMessage message) {
-        scheduler.schedule(() -> {
+        logger.info("Payment request received paymentGuid - {}, amount - {}, currency - {}", message.getPaymentGuid(), message.getAmount(), message.getCurrency());
+
+        CreateChargeRequest createChargeRequest = new CreateChargeRequest();
+        createChargeRequest.setAmount(message.getAmount());
+        createChargeRequest.setCurrency(message.getCurrency());
+        createChargeRequest.setOrder(message.getPaymentGuid());
+        try {
+            ChargeResponse chargeResponse = xPaymentProviderGateway.createCharge(createChargeRequest);
+
+            logger.info("Payment request with paymentGuid - {} is sentfor payment processing. Current status - ",
+            chargeResponse.getStatus());
             XPaymentAdapterResponseMessage responseMessage = new XPaymentAdapterResponseMessage();
+
+            responseMessage.setPaymentGuid(chargeResponse.getOrder());
+            responseMessage.setTransactionRefId(chargeResponse.getId());
+            responseMessage.setAmount(chargeResponse.getAmount());
+            responseMessage.setCurrency(chargeResponse.getCurrency());
+            responseMessage.setStatus(XPaymentAdapterStatus.valueOf(chargeResponse.getStatus()));
+
+            responseMessage.setOccurredAt(Instant.now());
+            asyncSender.send(responseMessage);
+        } catch (RestClientException ex) {
+            logger.error("Error in time of sending payment request with paymentGuid - {}", message.getPaymentGuid(), ex);
+
+            XPaymentAdapterResponseMessage responseMessage = new XPaymentAdapterResponseMessage();
+
             responseMessage.setPaymentGuid(message.getPaymentGuid());
             responseMessage.setAmount(message.getAmount());
             responseMessage.setCurrency(message.getCurrency());
-            responseMessage.setStatus(XPaymentAdapterStatus.SUCCEEDED);
-            responseMessage.setTransactionRefId(UUID.randomUUID());
+            responseMessage.setStatus(XPaymentAdapterStatus.CANCELED);
             responseMessage.setOccurredAt(Instant.now());
-            sender.send(responseMessage);
-        }, 10, TimeUnit.SECONDS);
-    }
-    @PreDestroy
-    public void shutdown() {
-        scheduler.shutdown();
+            asyncSender.send(responseMessage);
+        }
     }
 }
