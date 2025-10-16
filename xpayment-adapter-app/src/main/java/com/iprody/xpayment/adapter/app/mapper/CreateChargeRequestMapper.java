@@ -10,6 +10,7 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.ERROR
 )
 public interface CreateChargeRequestMapper {
+
     CreateChargeRequest toEntity(CreateChargeRequestDto createChargeRequestDto);
     CreateChargeRequestDto toDto(CreateChargeRequest createChargeRequest);
 }
