@@ -2,8 +2,10 @@ package com.iprody.xpayment.adapter.app.api;
 
 import com.iprody.xpayment.adapter.app.api.client.DefaultApi;
 import com.iprody.xpayment.adapter.app.api.model.ChargeResponse;
+
 import com.iprody.xpayment.adapter.app.mapper.CreateChargeRequestMapper;
 import com.iprody.xpayment.adapter.app.mapper.CreateChargeResponseMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import java.util.UUID;
@@ -14,6 +16,7 @@ class XPaymentProviderGatewayImpl implements XPaymentProviderGateway {
     private final CreateChargeResponseMapper responseMapper;
     private final CreateChargeRequestMapper requestMapper;
 
+    @Autowired
     public XPaymentProviderGatewayImpl(DefaultApi defaultApi, CreateChargeResponseMapper responseMapper, CreateChargeRequestMapper requestMapper) {
         this.defaultApi = defaultApi;
         this.responseMapper = responseMapper;
@@ -29,14 +32,4 @@ class XPaymentProviderGatewayImpl implements XPaymentProviderGateway {
     public ChargeResponse retrieveCharge(UUID id) throws RestClientException {
         return null;
     }
-
-//    @Override
-//    public CreateChargeResponseDto createCharge(CreateChargeRequestDto createChargeRequest) throws RestClientException {
-//        return defaultApi.createCharge((createChargeRequest).map(CreateChargeRequestMapper::toDto).orElseThrow());
-//    }
-//
-//    @Override
-//    public CreateChargeResponseDto retrieveCharge(UUID id) throws RestClientException {
-//        return defaultApi.retrieveCharge(id);
-//    }
 }
