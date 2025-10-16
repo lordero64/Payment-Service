@@ -1,5 +1,7 @@
 package com.iprody.xpayment.adapter.app.async;
 
+import com.iprody.xpayment.adapter.app.api.CreateChargeRequestDto;
+import com.iprody.xpayment.adapter.app.api.CreateChargeResponseDto;
 import com.iprody.xpayment.adapter.app.api.model.ChargeResponse;
 import com.iprody.xpayment.adapter.app.api.model.CreateChargeRequest;
 import com.iprody.xpayment.adapter.app.api.XPaymentProviderGateway;
@@ -26,22 +28,22 @@ public class RequestMessageHandler implements MessageHandler<XPaymentAdapterRequ
 
         logger.info("Payment request received paymentGuid - {}, amount - {}, currency - {}", message.getPaymentGuid(), message.getAmount(), message.getCurrency());
 
-        CreateChargeRequest createChargeRequest = new CreateChargeRequest();
-        createChargeRequest.setAmount(message.getAmount());
-        createChargeRequest.setCurrency(message.getCurrency());
-        createChargeRequest.setOrder(message.getPaymentGuid());
+        CreateChargeRequestDto createChargeRequestDto = new CreateChargeRequestDto();
+        createChargeRequestDto.setAmount(message.getAmount());
+        createChargeRequestDto.setCurrency(message.getCurrency());
+        createChargeRequestDto.setOrder(message.getPaymentGuid());
         try {
-            ChargeResponse chargeResponse = xPaymentProviderGateway.createCharge(createChargeRequest);
+            CreateChargeResponseDto createChargeResponseDto = xPaymentProviderGateway.createCharge(createChargeRequestDto);
 
             logger.info("Payment request with paymentGuid - {} is sentfor payment processing. Current status - ",
-            chargeResponse.getStatus());
+            createChargeResponseDto.getStatus());
             XPaymentAdapterResponseMessage responseMessage = new XPaymentAdapterResponseMessage();
 
-            responseMessage.setPaymentGuid(chargeResponse.getOrder());
-            responseMessage.setTransactionRefId(chargeResponse.getId());
-            responseMessage.setAmount(chargeResponse.getAmount());
-            responseMessage.setCurrency(chargeResponse.getCurrency());
-            responseMessage.setStatus(XPaymentAdapterStatus.valueOf(chargeResponse.getStatus()));
+            responseMessage.setPaymentGuid(createChargeResponseDto.getOrder());
+            responseMessage.setTransactionRefId(createChargeResponseDto.getId());
+            responseMessage.setAmount(createChargeResponseDto.getAmount());
+            responseMessage.setCurrency(createChargeResponseDto.getCurrency());
+            responseMessage.setStatus(XPaymentAdapterStatus.valueOf(createChargeResponseDto.getStatus()));
 
             responseMessage.setOccurredAt(Instant.now());
             asyncSender.send(responseMessage);
