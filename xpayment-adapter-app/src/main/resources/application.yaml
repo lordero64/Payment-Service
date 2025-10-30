@@ -61,6 +61,11 @@ x-payment-api:
      password: iprodyTestPassword0123
      account: paymentAgentIprodyApiToken
 
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
 
 logging:
   level:
