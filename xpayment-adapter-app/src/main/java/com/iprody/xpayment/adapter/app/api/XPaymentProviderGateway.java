@@ -10,5 +10,5 @@ public interface XPaymentProviderGateway {
     CreateChargeResponseDto createCharge(CreateChargeRequestDto createChargeRequestDto)
             throws RestClientException;
 
-    ChargeResponse retrieveCharge(UUID id) throws RestClientException;
+    CreateChargeResponseDto retrieveCharge(UUID id) throws RestClientException;
 }

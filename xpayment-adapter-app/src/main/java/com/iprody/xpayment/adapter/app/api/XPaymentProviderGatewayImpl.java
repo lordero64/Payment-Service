@@ -1,7 +1,6 @@
 package com.iprody.xpayment.adapter.app.api;
 
 import com.iprody.xpayment.adapter.app.api.client.DefaultApi;
-import com.iprody.xpayment.adapter.app.api.model.ChargeResponse;
 
 import com.iprody.xpayment.adapter.app.mapper.CreateChargeRequestMapper;
 import com.iprody.xpayment.adapter.app.mapper.CreateChargeResponseMapper;
@@ -29,7 +28,7 @@ class XPaymentProviderGatewayImpl implements XPaymentProviderGateway {
     }
 
     @Override
-    public ChargeResponse retrieveCharge(UUID id) throws RestClientException {
-        return null;
+    public CreateChargeResponseDto retrieveCharge(UUID id) throws RestClientException {
+        return responseMapper.toEntity( defaultApi.retrieveCharge(id));
     }
 }
